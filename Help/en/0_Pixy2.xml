@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Pixy2">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\Pixy2"
+        The Pixy2 module made by OFDL Taiwan. 
+		*Please set Pixy2 Interface to "LEGO I2C" mode.
+      </summary>
+    </member>
+    <member name="M:getLargest">
+      <summary>
+        Gets Largest object info from Pixy2.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="xOut">The X axis (0-255) output.</param>
+      <param name="yOut">The Y axis (0-255) output.</param>
+      <param name="wOut">The Width (0-255) output.</param>
+      <param name="hOut">The Height (0-255) output.</param>
+    </member>
+	
+	<member name="M:getSignature">
+      <summary>
+        Gets specific object info from Pixy2 by signature.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="signature">The signature you want to set.</param>
+      <param name="xOut">The X axis (0-255) output.</param>
+      <param name="yOut">The Y axis (0-255) output.</param>
+      <param name="wOut">The Width (0-255) output.</param>
+      <param name="hOut">The Height (0-255) output.</param>
+    </member>
+	
+	<member name="M:setLampOn">
+      <summary>
+        Set Pixy2 Lamp On.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
+	<member name="M:setLampOff">
+      <summary>
+        Set Pixy2 Lamp On.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Gyro">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\Gyro"
+        The EV3 Adv Gyro Sensor module made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:getAngle">
+      <summary>
+        Get EV3 Gyro Angle.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="angleOut">Angle output.</param>
+    </member>
+	
+	<member name="M:getAngleAndRate">
+      <summary>
+        Get EV3 Gyro Angle and Rate.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="angleOut">Angle output.</param>
+      <param name="rateOut">Rate output.</param>
+    </member>
+	
+	<member name="M:getTiltAngle">
+      <summary>
+        Get EV3 Gyro Tilt Angle. (Only new version gyro have this mode)
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="angleOut">Tilt Angle output.</param>
+    </member>
+	
+	<member name="M:getTiltRate">
+      <summary>
+        Get EV3 Gyro Tilt Rate. (Only new version gyro have this mode)
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="rateOut">Tilt Rate output.</param>
+    </member>
+	
+	<member name="M:getHeading">
+      <summary>
+        Get Heading from Gyro with some calculation, emulate the HT Compass.
+		The target is always zero degrees, depending on when you reset the gyro.
+		*Make sure sensor working in angle mode. You can run Sensor.SetMode(port, 0) once at the top of program.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="rpxBias">The Bias angle for real time gyro calibrate.</param>
+      <param name="relHeadingOut">Relative Heading (-180 ~ 180) output.</param>
+      <param name="absHeadingOut">Absolute Heading (0 ~ 360) output.</param>
+    </member>
+	
+	<member name="M:reset">
+      <summary>
+        Reset the Gyro sensor to zero degrees.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
+	<member name="M:resetCheck">
+      <summary>
+        Checking the gyro reset result, will take 0.7s to check, if gyro is drift will beep sound to notice user.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="resultOut">The result in string "true" of "false"</param>
+    </member>
+	
+  </members>
+</doc>

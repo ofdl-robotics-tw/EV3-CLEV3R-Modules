@@ -1,0 +1,102 @@
+'Name: Useful ToolBox module
+'Version: 1.0
+'Author: OFDL Anthony 2023/09/02
+'---------------------------------
+'
+' The Useful ToolBox Block ev3Basic version
+'
+
+Function getArrayMaxMin(in number[] array, in number size,out number min, out number minID, out number max, out number maxID)
+  min = array[0]
+  max = array[0]
+  minID = 0
+  maxID = 0
+  ''Find Min
+  For i = 1 To size - 1
+    If array[i] < min Then
+      min = array[i]
+      minID = i
+    EndIf
+  EndFor
+  ''Find Max
+  For i = 1 To size - 1
+    If array[i] > max Then
+      max = array[i]
+      maxID = i
+    EndIf
+  EndFor
+EndFunction
+
+Function select(in string logic_in, in number true_out, in number false_out, out number n)
+  If logic_in = "True" Then
+    n = true_out
+  Else
+    n = false_out
+  EndIf
+EndFunction
+
+Function constrain(in number x, in number min, in number max, out number n)
+  If x < min Then
+    n = min
+  ElseIf x > max Then
+    n = max
+  Else
+    n = x
+  EndIf
+EndFunction
+
+Function wrap(in number x, in number min, in number max, out number n)
+  If x < min Then
+    n = min - x
+  ElseIf x > max Then
+    n = x - max
+  Else
+    n = x
+  EndIf
+EndFunction
+
+Function map(in number x, in number fromLow, in number fromHigh, in number toLow, in number toHigh, out number n)
+  n = (x - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow
+EndFunction
+
+Function atan2(in number y, in number x, out number n)
+  If x > 0 Then
+    n = Math.GetDegrees(Math.ArcTan(y / x))
+  ElseIf x < 0 Then
+    If y >= 0 Then
+      n = Math.GetDegrees(Math.ArcTan(y / x)) + 180
+    Else
+      n = Math.GetDegrees(Math.ArcTan(y / x)) - 180
+    EndIf
+  ElseIf x = 0 Then
+    If y = 0 Then
+      'atan2_org.vi is n = y / x
+      n = 0
+    ElseIf y > 0 Then
+      n = 90
+    ElseIf y < 0 Then
+      n = -90
+    EndIf
+  EndIf
+EndFunction
+
+Function atan2_m90(in number y, in number x, out number n)
+  If x > 0 Then
+    n = Math.GetDegrees(Math.ArcTan(y / x)) - 90
+  ElseIf x < 0 Then
+    If y >= 0 Then
+      n = Math.GetDegrees(Math.ArcTan(y / x)) + 90
+    Else
+      n = Math.GetDegrees(Math.ArcTan(y / x)) - 270
+    EndIf
+  ElseIf x = 0 Then
+    If y = 0 Then
+      'atan2_org.vi is n = y / x
+      n = 0
+    ElseIf y > 0 Then
+      n = 0
+    ElseIf y < 0 Then
+      n = -180
+    EndIf
+  EndIf
+EndFunction

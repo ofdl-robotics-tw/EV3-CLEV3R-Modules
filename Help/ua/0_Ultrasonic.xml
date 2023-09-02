@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Ultrasonic">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\Ultrasonic"
+        The EV3/NXT UltraSonic Sensor module made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:getCm">
+      <summary>
+        Get UltraSonic distance in cm.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="cmOut">Distance output in cm.</param>
+    </member>
+	
+	<member name="M:getInch">
+      <summary>
+        Get UltraSonic distance in Inch.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="inchOut">Distance output in Inch.</param>
+    </member>
+	
+	<member name="M:waitInCm">
+      <summary>
+        A method that will wait sensor detect something in distance(cm). 
+		*The program will wait it done.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+	  <param name="cm">Distance in cm.</param>
+    </member>
+	
+	<member name="M:waitInInch">
+      <summary>
+        A method that will wait sensor detect something in distance(inch). 
+		*The program will wait it done.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+	  <param name="inch">Distance in inch.</param>
+    </member>
+	
+  </members>
+</doc>

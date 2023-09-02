@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:HTIRSeeker">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\HTIRSeeker"
+        The HiTechnic IRSeeker V2 Sensor module made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:getRawDC">
+      <summary>
+        Get DC mode IRSeeker raw values.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="dirOut">Direction output.</param>
+	  <param name="sthOut">Strength output.</param>
+	  <param name="s1Out">Channel 1 strength output.</param>
+	  <param name="s2Out">Channel 2 strength output.</param>
+	  <param name="s3Out">Channel 3 strength output.</param>
+	  <param name="s4Out">Channel 4 strength output.</param>
+	  <param name="s5Out">Channel 5 strength output.</param>
+    </member>
+	
+	<member name="M:getRawAC">
+      <summary>
+        Get AC mode IRSeeker raw values.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="dirOut">Direction output.</param>
+	  <param name="sthOut">Strength output.</param>
+	  <param name="s1Out">Channel 1 strength output.</param>
+	  <param name="s2Out">Channel 2 strength output.</param>
+	  <param name="s3Out">Channel 3 strength output.</param>
+	  <param name="s4Out">Channel 4 strength output.</param>
+	  <param name="s5Out">Channel 5 strength output.</param>
+    </member>
+	
+	<member name="M:Config">
+      <summary>
+        Config each channel strength offset and direction filter.
+      </summary>
+      <param name="filterSth">Filter strength set.</param>
+	  <param name="dirLow">Direction lower bound to apply the filter.</param>
+	  <param name="dirHigh">Direction upper bound to apply the filter.</param>
+	  <param name="s1Offset">Channel 1 offset.</param>
+	  <param name="s2Offset">Channel 2 offset.</param>
+	  <param name="s3Offset">Channel 3 offset.</param>
+	  <param name="s4Offset">Channel 4 offset.</param>
+	  <param name="s5Offset">Channel 5 offset.</param>
+    </member>
+	
+	<member name="M:getFilterAC_DirSth">
+      <summary>
+        Get AC mode IRSeeker filtered Direction and Strength value.
+		*To use this function, please run HTIRSeeker.Config(..) method first!
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="fdirOut">Filtered Direction output.</param>
+	  <param name="sthOut">Adjusted Strength output.</param>
+    </member>
+	
+	<member name="M:getFilterAC_All">
+      <summary>
+        Get AC mode IRSeeker all filtered values.
+		*To use this function, please run HTIRSeeker.Config(..) method first!
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="fdirOut">Filtered Direction output.</param>
+	  <param name="sthOut">Adjusted Strength output.</param>
+	  <param name="s1Out">Adjusted Channel 1 strength output.</param>
+	  <param name="s2Out">Adjusted Channel 2 strength output.</param>
+	  <param name="s3Out">Adjusted Channel 3 strength output.</param>
+	  <param name="s4Out">Adjusted Channel 4 strength output.</param>
+	  <param name="s5Out">Adjusted Channel 5 strength output.</param>
+    </member>
+	
+	<member name="M:set600Hz">
+      <summary>
+        Set HiTechnic IRSeeker V2 to 600Hz mode.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="resultOut">Setting reslut ("True" or "False") output.</param>
+    </member>
+	
+	<member name="M:set1200Hz">
+      <summary>
+        Set HiTechnic IRSeeker V2 to 1200Hz mode.
+		*WRO and RCJ usually using 1200Hz (D mode).
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+	  <param name="resultOut">Setting reslut ("True" or "False") output.</param>
+    </member>
+	
+  </members>
+</doc>

@@ -1,0 +1,128 @@
+'Name: HT IRSeekerV2 module
+'Version: 1.0
+'Author: OFDL Anthony 2023/08/30
+'---------------------------------
+'
+' We Using regular I2C Command instead of firmware built-in mode (typedata50).
+'
+
+number FilterSth
+number DirLow
+number DirHigh
+number[] Offset
+
+Function Config(in number FS, in number DL, in number DH, in number a, in number b, in number c, in number d, in number e)
+  FilterSth = FS
+  DirLow = DL
+  DirHigh = DH
+  Offset[0] = a
+  Offset[1] = b
+  Offset[2] = c
+  Offset[3] = d
+  Offset[4] = e
+EndFunction
+
+Function set600Hz(in number port, out string result)
+  Sensor.WriteI2CRegister(port, 8, 65, 1)
+  Program.Delay(5)
+  value = Sensor.ReadI2CRegister(port, 8, 65)
+  If value = 1 Then
+    result = "True"
+  Else
+    result = "False"
+  EndIf
+EndFunction
+
+Function set1200Hz(in number port, out string result)
+  Sensor.WriteI2CRegister(port, 8, 65, 0)
+  Program.Delay(5)
+  value = Sensor.ReadI2CRegister(port, 8, 65)
+  If value = 0 Then
+    result = "True"
+  Else
+    result = "False"
+  EndIf
+EndFunction
+
+Function getRawDC(in number port, out number dir, out number sth, out number s1, out number s2, out number s3, out number s4, out number s5)
+  ir_read_data = Sensor.ReadI2CRegisters(port, 8, 66, 6)
+  dir = ir_read_data[0]
+  s1 = ir_read_data[1]
+  s2 = ir_read_data[2]
+  s3 = ir_read_data[3]
+  s4 = ir_read_data[4]
+  s5 = ir_read_data[5]
+  
+  ''Find Max sth
+  sth_max = 0
+  For i = 1 To 5
+    If ir_read_data[i] > sth_max Then
+      sth_max = ir_read_data[i]
+    EndIf
+  EndFor
+  sth = sth_max
+EndFunction
+
+Function getRawAC(in number port, out number dir, out number sth, out number s1, out number s2, out number s3, out number s4, out number s5)
+  ir_read_data = Sensor.ReadI2CRegisters(port, 8, 73, 6)
+  dir = ir_read_data[0]
+  s1 = ir_read_data[1]
+  s2 = ir_read_data[2]
+  s3 = ir_read_data[3]
+  s4 = ir_read_data[4]
+  s5 = ir_read_data[5]
+  
+  ''Find Max sth
+  sth_max = 0
+  For i = 1 To 5
+    If ir_read_data[i] > sth_max Then
+      sth_max = ir_read_data[i]
+    EndIf
+  EndFor
+  sth = sth_max
+EndFunction
+
+Function getFilterAC_DirSth(in number port, out number fdir, out number sth)
+  ir_read_data = Sensor.ReadI2CRegisters(port, 8, 73, 6)
+
+  ''Find Max sth
+  sth_max = 0
+  For i = 0 To 4
+    If ir_read_data[i + 1] + Offset[i] > sth_max Then 
+      sth_max = ir_read_data[i + 1] + Offset[i]
+    EndIf
+  EndFor
+  sth = sth_max
+  
+  ''Filter Dir
+  If FilterSth <= sth Or (DirHigh >= ir_read_data[0] And ir_read_data[0] >= DirLow) Then
+    fdir = ir_read_data[0]
+  Else
+    fdir = 0
+  EndIf
+EndFunction
+
+Function getFilterAC_All(in number port, out number fdir, out number sth, out number s1, out number s2, out number s3, out number s4, out number s5)
+  ir_read_data = Sensor.ReadI2CRegisters(port, 8, 73, 6)
+  s1 = ir_read_data[1] + Offset[0]
+  s2 = ir_read_data[2] + Offset[1]
+  s3 = ir_read_data[3] + Offset[2]
+  s4 = ir_read_data[4] + Offset[3]
+  s5 = ir_read_data[5] + Offset[4]
+
+  ''Find Max sth
+  sth_max = 0
+  For i = 0 To 4
+    If ir_read_data[i + 1] + Offset[i] > sth_max Then 
+      sth_max = ir_read_data[i + 1] + Offset[i]
+    EndIf
+  EndFor
+  sth = sth_max
+  
+  ''Filter Dir
+  If FilterSth <= sth Or (DirHigh >= ir_read_data[0] And ir_read_data[0] >= DirLow) Then
+    fdir = ir_read_data[0]
+  Else
+    fdir = 0
+  EndIf
+EndFunction

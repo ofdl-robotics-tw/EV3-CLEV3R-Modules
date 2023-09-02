@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Tool">
+      <summary>
+		Before use this module, Please import first:
+		import "Tools\Tool"
+        The Useful ToolBox module made by OFDL Taiwan. 
+      </summary>
+    </member>
+    <member name="M:getArrayMaxMin">
+      <summary>
+        Gets the min and max value and index from array.
+      </summary>
+      <param name="array">Array input.</param>
+      <param name="size">The size of array.</param>
+      <param name="minOut">Min value output.</param>
+      <param name="minIdOut">Min index output.</param>
+	  <param name="maxOut">Max value output.</param>
+      <param name="maxIdOut">Max index output.</param>
+    </member>
+	
+	<member name="M:select">
+      <summary>
+        Returns the value wired to the t input or f input, depending on the value of s. If s is "True", this function returns the value wired to t. If s is "False", this function returns the value wired to f.
+      </summary>
+      <param name="s">s determines whether the function returns the value of t or f in s? t:f.</param>
+      <param name="t">t is the value that this function returns if s passes a "True" value.</param>
+      <param name="f">f is the value that this function returns if s passes a "False" value.</param>
+      <param name="numOut">Result output.</param>
+    </member>
+	
+	<member name="M:constrain">
+      <summary>
+        Constrains a number to be within a range.
+      </summary>
+      <param name="num">Number input.</param>
+      <param name="min">The lower end of the range.</param>
+      <param name="max">The upper end of the range.</param>
+      <param name="numOut">Result output.</param>
+    </member>
+	
+	<member name="M:wrap">
+      <summary>
+        Wrap values from a range into the range. For Example, lower bound is 0, upper bound is 100, if input 110, result will output 10, or input 130, result will output 30, and so on.
+      </summary>
+      <param name="num">Number input.</param>
+      <param name="min">The lower end of the range.</param>
+      <param name="max">The upper end of the range.</param>
+      <param name="numOut">Result output.</param>
+    </member>
+	
+	<member name="M:map">
+      <summary>
+        Re-maps a number from one range to another. That is, a value of fromLow would get mapped to toLow, a value of fromHigh to toHigh, values in-between to values in-between, etc.
+      </summary>
+      <param name="num">Number input.</param>
+      <param name="fromLow">The lower bound of the value’s current range.</param>
+      <param name="fromHigh">The upper bound of the value’s current range.</param>
+	  <param name="toLow">The lower bound of the value’s target range.</param>
+      <param name="toHigh">The upper bound of the value’s target range.</param>
+      <param name="numOut">Result output.</param>
+    </member>
+	
+	<member name="M:atan2">
+      <summary>
+        Returns the arc tangent of the two numbers x and y.
+      </summary>
+      <param name="y">The Y input.</param>
+      <param name="x">The X input.</param>
+      <param name="numOut">Result output.</param>
+    </member>
+	
+	<member name="M:atan2_m90">
+      <summary>
+        Returns the arc tangent of the two numbers x and y.
+		But result minus 90, make some odometry more convenient.
+      </summary>
+      <param name="y">The Y input.</param>
+      <param name="x">The X input.</param>
+      <param name="numOut">Result output.</param>
+    </member>
+	
+  </members>
+</doc>

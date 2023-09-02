@@ -1,0 +1,32 @@
+'Name: HT Compass module
+'Version: 1.0
+'Author: OFDL Anthony 2023/08/29
+'---------------------------------
+'
+' We Using regular I2C Command instead of firmware built-in mode (typedata50).
+'
+
+Function getAbsoluteHeading(in number port, out number absHdg)
+  value = Sensor.ReadI2CRegisters(port, 1, 66, 2)
+  absHdg = value[0] * 2 + value[1]
+EndFunction
+
+Function getRelativeHeading(in number port, in number target, out number RelHdg)
+  value = Sensor.ReadI2CRegisters(port, 1, 66, 2)
+  tmp = target - (value[0] * 2 + value[1]) + 180
+  If tmp >= 0 Then
+    tmp = Math.Remainder(tmp, 360)
+  Else
+    tmp = 359 - Math.Remainder(-1 - tmp, 360)
+  EndIf
+  RelHdg = tmp - 180
+EndFunction
+
+Function setCalibrateStart(in number port)
+  Sensor.WriteI2CRegister(port, 1, 65, 67)
+EndFunction
+
+Function setCalibrateStop(in number port)
+  Sensor.WriteI2CRegister(port, 1, 65, 0)
+  tmp = Sensor.ReadI2CRegister(port, 1, 65)
+EndFunction

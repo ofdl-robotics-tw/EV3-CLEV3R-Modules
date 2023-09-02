@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Color">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\Color"
+        The EV3 Color Sensor module made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:getID">
+      <summary>
+        Get EV3 Color Sensor Color ID.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="idOut">Color ID output.</param>
+    </member>
+	
+	<member name="M:getLight">
+      <summary>
+        Get EV3 Color Sensor Reflect light value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="lightOut">Lightness output.</param>
+    </member>
+	
+	<member name="M:getAmbient">
+      <summary>
+        Get EV3 Color Sensor Ambient light value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="lightOut">Lightness output.</param>
+    </member>
+	
+	<member name="M:getRaw">
+      <summary>
+        Get EV3 Color Sensor Reflect Light raw value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="rawOut">Raw value output.</param>
+    </member>
+	
+	<member name="M:getRGBW">
+      <summary>
+        Get EV3 Color Sensor Color RGBW value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="redOut">Red value output.</param>
+	  <param name="greenOut">Green value output.</param>
+	  <param name="blueOut">Blue value output.</param>
+	  <param name="whiteOut">White value output.</param>
+    </member>
+	
+	<member name="M:getHSVL">
+      <summary>
+        Get EV3 Color Sensor Color HSVL value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="hueOut">Hue output.</param>
+	  <param name="saturationOut">Saturation output.</param>
+	  <param name="valueOut">Value output.</param>
+	  <param name="lightnessOut">Lightness output.</param>
+    </member>
+	
+  </members>
+</doc>

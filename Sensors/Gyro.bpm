@@ -1,0 +1,73 @@
+'Name: EV3 Adv Gyro module
+'Version: 1.0
+'Author: OFDL Anthony 2023/08/29
+'---------------------------------
+
+Function getAngle(in number port, out number value)
+  Sensor.SetMode(port, 0)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getAngleAndRate(in number port, out number angle, out number rate)
+  Sensor.SetMode(port, 3)
+  values = Sensor.ReadRaw(port, 2)
+  angle = values[0]
+  rate = values[1]
+EndFunction
+
+Function getTiltAngle(in number port, out number value)
+  Sensor.SetMode(port, 6)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getTiltRate(in number port, out number value)
+  Sensor.SetMode(port, 5)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getHeading(in number port, in number rpx_bias, out number rpx, out number rpx_360)
+  'bias
+  If rpx_bias <= 180 Then
+    bias = 0 - rpx_bias
+  Else
+    bias = 360 - rpx_bias
+  EndIf
+  
+  'rpx 0 ~ 360
+  rpx_360= bias + Math.Remainder(Math.Remainder(Sensor.ReadRawValue(port, 0), 360) + 360, 360)
+  
+  'rpx -180 ~ 180
+  If rpx_360 <= 180 Then
+    rpx = 0 - rpx_360
+  Else
+    rpx = 360 - rpx_360
+  EndIf
+EndFunction
+
+Function reset(in number port)
+  'put the gyro into angle mode before trying to reset.
+  Sensor.SetMode(port, 0)
+  Sensor.ReadRawValue(port, 0)
+  'write reset cmd
+  gyroResetData[0] = 17
+  Sensor.SendUARTData(port, 1, gyroResetData)
+  'wait it apply
+  Sensor.Wait(port)
+EndFunction
+
+Function resetCheck(in number port, out string result)
+  Sensor.SetMode(port, 0)
+  Sensor.ReadRawValue(port, 0)
+  Program.Delay(700)
+  If Sensor.ReadRawValue(port, 0) <> 0 Then
+    result = "False"
+    Speaker.Note(100, "C5", 100)
+    Speaker.Wait()
+    Speaker.Note(100, "C5", 100)
+    Speaker.Wait()
+    Speaker.Note(100, "C5", 100)
+    Speaker.Wait()
+  Else
+    result = "True"
+  EndIf
+EndFunction

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:Touch">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\Touch"
+        The EV3/NXT Touch Sensor module made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:getTouch">
+      <summary>
+        Get Touch Sensor press state.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="stateOut">Touch state output, 1 = pressed, 0 = released</param>
+    </member>
+	
+	<member name="M:waitTouched">
+      <summary>
+        A method that will wait Touch sensor pressed. *The program will wait it done.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
+  </members>
+</doc>

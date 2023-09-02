@@ -1,0 +1,51 @@
+'Name: NXT Light with Norm module
+'Version: 1.0
+'Author: OFDL Anthony 2023/08/28
+'---------------------------------
+
+number s1min
+number s1max
+number s2min
+number s2max
+number s3min
+number s3max
+number s4min
+number s4max
+
+Function Config(in number port, in number min, in number max)
+  if port = 1 Then
+    s1min = min
+    s1max = max
+  ElseIf port = 2 Then
+    s2min = min
+    s2max = max
+  ElseIf port = 3 Then
+    s3min = min
+    s3max = max
+  ElseIf port = 4 Then
+    s4min = min
+    s4max = max
+  EndIf
+  Sensor.SetMode(port, 0)
+EndFunction
+
+Function getRaw(in number port, out number value)
+  Sensor.SetMode(port, 0)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getS1(out number value)
+  value = ((Sensor1.Raw1() - s1max) * 100) / (s1min - s1max)
+EndFunction
+
+Function getS2(out number value)
+  value = ((Sensor2.Raw1() - s2max) * 100) / (s2min - s2max)
+EndFunction
+
+Function getS3(out number value)
+  value = ((Sensor3.Raw1() - s3max) * 100) / (s3min - s3max)
+EndFunction
+
+Function getS4(out number value)
+  value = ((Sensor4.Raw1() - s4max) * 100) / (s4min - s4max)
+EndFunction

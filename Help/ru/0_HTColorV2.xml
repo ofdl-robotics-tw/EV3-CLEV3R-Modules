@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:HTColorV2">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\HTColorV2"
+        The HiTechnic Color Sensor V2 module made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:getID">
+      <summary>
+        Get HiTechnic Color Sensor V2 Color ID.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="idOut">Color ID output.</param>
+    </member>
+	
+	<member name="M:getRGBW">
+      <summary>
+        Get HiTechnic Color Sensor V2 RGBW value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="redOut">Red value output.</param>
+	  <param name="greenOut">Green value output.</param>
+	  <param name="blueOut">Blue value output.</param>
+	  <param name="whiteOut">White value output.</param>
+    </member>
+	
+	<member name="M:getPassiveRGBW">
+      <summary>
+        Get HiTechnic Color Sensor V2 Passive RGBW value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="redOut">Red value output.</param>
+	  <param name="greenOut">Green value output.</param>
+	  <param name="blueOut">Blue value output.</param>
+	  <param name="whiteOut">White value output.</param>
+    </member>
+	
+	<member name="M:getRawRGBW">
+      <summary>
+        Get HiTechnic Color Sensor V2 Raw RGBW value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="redOut">Red value output.</param>
+	  <param name="greenOut">Green value output.</param>
+	  <param name="blueOut">Blue value output.</param>
+	  <param name="whiteOut">White value output.</param>
+    </member>
+	
+	<member name="M:getHSVL">
+      <summary>
+        Get HiTechnic Color Sensor V2 HSVL value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="hueOut">Hue output.</param>
+	  <param name="saturationOut">Saturation output.</param>
+	  <param name="valueOut">Value output.</param>
+	  <param name="lightnessOut">Lightness output.</param>
+    </member>
+	
+	<member name="M:set50Hz">
+      <summary>
+        Set HiTechnic Color Sensor V2 to 50Hz mode.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
+	<member name="M:set60Hz">
+      <summary>
+        Set HiTechnic Color Sensor V2 to 60Hz mode.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
+  </members>
+</doc>

@@ -1,0 +1,101 @@
+'Name: EV3 Color module
+'Version: 1.0
+'Author: OFDL Anthony 2023/08/28
+'---------------------------------
+
+Function getID(in number port, out number value)
+  Sensor.SetMode(port, 2)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getLight(in number port, out number value)
+  Sensor.SetMode(port, 0)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getAmbient(in number port, out number value)
+  Sensor.SetMode(port, 1)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getRaw(in number port, out number value)
+  Sensor.SetMode(port, 3)
+  value = Sensor.ReadRawValue(port, 0)
+EndFunction
+
+Function getRGBW(in number port, out number r, out number g, out number b, out number w)
+  Sensor.SetMode(port, 4)
+  values = Sensor.ReadRaw(port, 3)
+  r = values[0]
+  g = values[1]
+  b = values[2]
+  w = r + g + b
+EndFunction
+
+Function getHSVL(in number port, out number h, out number s, out number v, out number l)
+  Sensor.SetMode(port, 4)
+  values = Sensor.ReadRaw(port, 3)
+  r = values[0]
+  g = values[1]
+  b = values[2]
+  
+  'https://clev3r.ru/codesamples/
+  If r > 255 Then
+    r = 255
+  ElseIf g > 255 Then
+    g=255
+  ElseIf b > 255 Then
+    b = 255
+  EndIf
+  hue = 0
+  sat = 0
+  val = 0
+  
+  max = math.max(r, g)
+  max = math.max(max, b)
+  min = math.min(r, g)
+  min = math.min(min, b)
+  light = (max + min) / 5.12
+  val = max / 2.56
+  If val = 0 Then
+    hue = -1
+    sat = -1
+  EndIf
+  
+  r = r / max
+  g = g / max
+  b = b / max
+  max = math.max(r, g)
+  max = math.max(max, b)
+  min = math.min(r, g)
+  min = math.min(min, b)
+  sat = (max - min) * 100
+  If sat = 0 Then
+    hue = -1
+  EndIf
+  
+  r = (r - min) / (max - min)
+  g = (g - min) / (max - min)
+  b = (b - min) / (max - min)
+  max = math.max(r, g)
+  max = math.max(max, b)
+  min = math.min(r, g)
+  min = math.min(min, b)
+  
+  If max = r Then
+    hue=0.0 + 60.0 * (g - b)
+    If hue < 0.0 Then
+      hue = hue + 360.0
+    EndIf
+  ElseIf max = g Then
+    hue = 120.0 + 60.0 * (b - r)
+  Else
+    hue = 240.0 + 60.0 * (r - g)
+  EndIf
+  
+  'итоговые значения H, S и V
+  h = math.round(hue)
+  s = math.round(sat)
+  v = math.round(val)
+  l = math.round(light)
+EndFunction

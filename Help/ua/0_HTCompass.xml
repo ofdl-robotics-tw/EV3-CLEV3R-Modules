@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:HTCompass">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\HTCompass"
+        The HiTechnic Compass Sensor module made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:getAbsoluteHeading">
+      <summary>
+        Get Compass Absolute Heading.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="absHeadingOut">Absolute Heading (0 ~ 360) output.</param>
+    </member>
+	
+	<member name="M:getRelativeHeading">
+      <summary>
+        Get Compass Relative Heading.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="target">The target set (zero position).</param>
+      <param name="relHeadingOut">Relative Heading (-180 ~ 180) output.</param>
+    </member>
+	
+	<member name="M:setCalibrateStart">
+      <summary>
+        Start HiTechnic Compass Calibration mode.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
+	<member name="M:setCalibrateStop">
+      <summary>
+        Stop HiTechnic Compass Calibration mode.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
+  </members>
+</doc>

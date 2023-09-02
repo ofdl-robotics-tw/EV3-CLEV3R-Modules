@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:NXTLight">
+      <summary>
+		Before use this module, Please import first:
+		import "Sensors\NXTLight"
+        The NXT Light Normalization module made by OFDL Taiwan.
+      </summary>
+    </member>
+    <member name="M:Config">
+      <summary>
+        Setup the sensors min and max raw value to prepare the normalization.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="min">Minimum raw value set.</param>
+      <param name="max">Maximum raw value set.</param>
+    </member>
+	
+	<member name="M:getRaw">
+      <summary>
+        Get NXT Light Sensor Reflect Light raw value.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="rawOut">Raw value output.</param>
+    </member>
+	
+	<member name="M:getS1">
+      <summary>
+        Get Port 1 Normalization light value.
+		*Make sure sensor working in raw mode. You can run Sensor.SetMode(1, 0) once at the top of program.
+      </summary>
+      <param name="lightOut">Normalization light output.</param>
+    </member>
+	
+	<member name="M:getS2">
+      <summary>
+        Get Port 2 Normalization light value.
+		*Make sure sensor working in raw mode. You can run Sensor.SetMode(2, 0) once at the top of program.
+      </summary>
+      <param name="lightOut">Normalization light output.</param>
+    </member>
+	
+	<member name="M:getS3">
+      <summary>
+        Get Port 3 Normalization light value.
+		*Make sure sensor working in raw mode. You can run Sensor.SetMode(3, 0) once at the top of program.
+      </summary>
+      <param name="lightOut">Normalization light output.</param>
+    </member>
+	
+	<member name="M:getS4">
+      <summary>
+        Get Port 4 Normalization light value.
+		*Make sure sensor working in raw mode. You can run Sensor.SetMode(4, 0) once at the top of program.
+      </summary>
+      <param name="lightOut">Normalization light output.</param>
+    </member>
+	
+  </members>
+</doc>

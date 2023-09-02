@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="W:OFDL_Module_Version">
+      <summary>
+		Version: 1.0, 2023-09-02
+		Thanks for using OFDL clev3r modules, when you see this section means the module help is installed!
+		If have any issue of the modules or help, please contact us:
+		Github: github.com/ofdl-robotics-tw
+      </summary>
+    </member>
+	
+  </members>
+</doc>

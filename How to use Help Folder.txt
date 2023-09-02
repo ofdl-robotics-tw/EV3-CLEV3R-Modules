@@ -1,0 +1,1 @@
+Please copy the help folder to the root directory of CLEV3R (the folder have Clever.exe) and replace the existing files/folder.

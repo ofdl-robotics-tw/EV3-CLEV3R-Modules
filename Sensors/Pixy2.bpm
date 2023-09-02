@@ -1,0 +1,36 @@
+'Name: Pixy2 module
+'Version: 1.0
+'Author: OFDL Anthony 2023/08/29
+'---------------------------------
+'
+' Please make sure pixy2 is in "LEGO I2C" mode.
+'
+
+Function getLargest(in number port, out number x, out number y, out number w, out number h)
+  values = Sensor.ReadI2CRegisters(port, 1, 80, 6)
+  'sig1 = values[0]
+  'sig2 = values[1]
+  x = values[2]
+  y = values[3]
+  w = values[4]
+  h = values[5]
+EndFunction
+
+Function getSignature(in number port, in number sig, out number x, out number y, out number w, out number h)
+  address = 80 + sig
+  values = Sensor.ReadI2CRegisters(port, 1, address, 5)
+  'num_of_matchs = values[0]
+  x = values[1]
+  y = values[2]
+  w = values[3]
+  h = values[4]
+EndFunction
+
+Function setLampOn(in number port)
+  Sensor.WriteI2CRegister(port, 0, 98, 1)
+EndFunction
+
+Function setLampOff(in number port)
+  Sensor.WriteI2CRegister(port, 0, 98, 0)
+EndFunction
+

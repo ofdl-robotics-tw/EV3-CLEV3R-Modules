@@ -1,0 +1,28 @@
+'Name: EV3 US module
+'Version: 1.0
+'Author: OFDL Anthony 2023/08/28
+'---------------------------------
+
+Function getCm(in number port, out number value)
+  Sensor.SetMode(port, 0)
+  value = Sensor.ReadRawValue(port, 0) / 10
+EndFunction
+
+Function waitInCm(in number port, in number cm)
+  Sensor.SetMode(port, 0)
+  While (Sensor.ReadRawValue(port, 0) / 10) > cm
+    ''Wait
+  EndWhile
+EndFunction
+
+Function getInch(in number port, out number value)
+  Sensor.SetMode(port, 1)
+  value = Sensor.ReadRawValue(port, 0) / 10
+EndFunction
+
+Function waitInInch(in number port, in number inch)
+  Sensor.SetMode(port, 1)
+  While (Sensor.ReadRawValue(port, 0) / 10) > inch
+    ''Wait
+  EndWhile
+EndFunction
