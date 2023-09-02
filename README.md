@@ -40,3 +40,13 @@ Please refer to the Help panel in the CLEV3R IDE.
 4. wrap()
 5. map()
 6. atan2()
+
+## License
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+Copyright (C) 2023 OFDL Taiwan
+-   Licensed under the GNU General Public License v3.0 (the "License").
+-   You may not use this project or any file except in compliance with the License.
+-   You may obtain a copy of the License at [https://www.gnu.org/licenses/#GPL](https://www.gnu.org/licenses/#GPL).
+
+👍And Thanks to the Author of CLEV3R: [CLEV3R-Github-Repos](https://github.com/iCheh/Clev3r-1)
