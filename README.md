@@ -16,7 +16,7 @@ Notice: Unlike EV3-G blocks, when you need the module in your program, you need 
 ## Manual or Helps
 Please refer to the Help panel in the CLEV3R IDE.
 
-## Suppoprt Sensors
+## Support Sensors
 1. EV3 Color Sensor
 2. EV3 Color Sensor (Normalization Light mode)
 3. EV3 Gyro Sensor
