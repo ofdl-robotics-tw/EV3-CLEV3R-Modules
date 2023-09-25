@@ -1,5 +1,6 @@
 # OFDL EV3 CLEV3R Modules
-![image](https://github.com/ofdl-robotics-tw/EV3-CLEV3R-Modules/assets/17724013/675deaf8-0ca4-4154-8b84-b3540c86e1ac)
+![image](https://github.com/ofdl-robotics-tw/EV3-CLEV3R-Modules/assets/17724013/78f696ac-4754-4451-a845-948c0143ae47)
+
 
 This is a universal modules made by the OFDL team for [CLEV3R IDE (EV3 Basic Plus)](https://clev3r.ru/), which allows users to read information from various commonly used (Yuh I mean WRO and FLL :-D) sensors through the module.
 
