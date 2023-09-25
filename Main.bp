@@ -1,0 +1,44 @@
+'OFDL Modules Test Program.
+
+folder "prjs""OFDL_ExPrj" 'Define the Project Name
+
+'import modules
+import "Mods\Color"
+import "Mods\Gyro"
+import "Mods\HTColorV2"
+import "Mods\HTCompass"
+import "Mods\HTIRSeeker"
+import "Mods\Light"
+import "Mods\NXTColor"
+import "Mods\NXTLight"
+import "Mods\Pixy2"
+import "Mods\Touch"
+import "Mods\Ultrasonic"
+import "Mods\Tool"
+
+LCD.Clear()
+
+' An Example to use NXT Light Sensor, need config first.
+NXTLight.Config(2, 1024, 2048)
+
+While 1=1
+  'Some example of how to use these modules
+  Color.getID(1, a)
+  NXTLight.getS2(b)
+  HTColorV2.getID(3, c)
+  HTCompass.getAbsoluteHeading(4, d)
+  e = 0
+  f = 0
+  g = 0
+  
+  LCD.Text(1,5,5,2, a)
+  LCD.Text(1,5,30,2, b)
+  LCD.Text(1,5,60,2, c)
+  LCD.Text(1,5,90,2, d)
+  LCD.Text(1,80,30,2, e)
+  LCD.Text(1,80,60,2, f)
+  LCD.Text(1,80,90,2, g)
+  
+  Program.Delay(50)
+  LCD.Clear()
+EndWhile

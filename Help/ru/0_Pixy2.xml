@@ -4,7 +4,7 @@
     <member name="T:Pixy2">
       <summary>
 		Before use this module, Please import first:
-		import "Sensors\Pixy2"
+		import "Mods\Pixy2"
         The Pixy2 module made by OFDL Taiwan. 
 		*Please set Pixy2 Interface to "LEGO I2C" mode.
       </summary>

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+  <members>
+    <member name="T:AdvMtCtrls">
+      <summary>
+		Before use this module, Please import first:
+		import "Mods\AdvMtCtrls"
+        The Advanced Motor Controller module(algorithm part) made by OFDL Taiwan.
+      </summary>
+    </member>
+	
+	<member name="M:PD_Config">
+      <summary>
+        Setup the PD Controller.
+      </summary>
+      <param name="kP">Proportional gain set.</param>
+      <param name="kD">Derivative gain set.</param>
+      <param name="power">Base power set.</param>
+    </member>
+	
+	<member name="M:PD">
+      <summary>
+        PD Controller Function.
+		*Before use, please use PD_Config(..) first.
+      </summary>
+      <param name="e1">Sensor 1 Input.</param>
+      <param name="e2">Sensor 2 Input.</param>
+      <param name="p1Out">Power 1 Output.</param>
+      <param name="p2Out">Power 2 Output.</param>
+    </member>
+	
+	<member name="M:PD_pwrIn">
+      <summary>
+        PD Controller Function with dynamic power input.
+		*Before use, please use PD_Config(..) first.
+      </summary>
+      <param name="power">Power Input.</param>
+      <param name="e1">Sensor 1 Input.</param>
+      <param name="e2">Sensor 2 Input.</param>
+      <param name="p1Out">Power 1 Output.</param>
+      <param name="p2Out">Power 2 Output.</param>
+    </member>
+	
+	<member name="M:Sync_Config">
+      <summary>
+        Setup the Synchronization Controller.
+      </summary>
+      <param name="kP">Proportional gain set. (~0.12)</param>
+      <param name="power1">Power 1 set.</param>
+      <param name="power2">Power 2 set.</param>
+    </member>
+	
+	<member name="M:Sync">
+      <summary>
+        Synchronization Controller Function.
+		*Before use, please use Sync_Config(..) first.
+      </summary>
+      <param name="e1">Sensor 1 Input.</param>
+      <param name="e2">Sensor 2 Input.</param>
+      <param name="p1Out">Calculated Power 1 Output.</param>
+      <param name="p2Out">Calculated Power 2 Output.</param>
+    </member>
+	
+	<member name="M:Sync_pwrIn">
+      <summary>
+        Synchronization Controller Function with dynamic power adn kP input.
+		*Before use, please use Sync_Config(..) first.
+      </summary>
+      <param name="e1">Sensor 1 Input.</param>
+      <param name="e2">Sensor 2 Input.</param>
+	  <param name="kP">Proportional gain Input.</param>
+	  <param name="power1">Power 1 Input.</param>
+	  <param name="power2">Power 2 Input.</param>
+      <param name="p1Out">Calculated Power 1 Output.</param>
+      <param name="p2Out">Calculated Power 2 Output.</param>
+    </member>
+	
+	<member name="M:AccOneEnc_Config">
+      <summary>
+        Setup the Acceleration Controller. (One Encoder)
+      </summary>
+      <param name="minPower">Minimum power set.</param>
+      <param name="maxPower">Maximum power set.</param>
+      <param name="accDist">Accel distance set.</param>
+      <param name="DecDist">Decel distance set.</param>
+      <param name="totalDist">Total distance set.</param>
+    </member>
+	
+	<member name="M:AccTwoEnc_Config">
+      <summary>
+        Setup the Acceleration Controller. (Two Encoder)
+      </summary>
+      <param name="minPower">Minimum power set.</param>
+      <param name="maxPower">Maximum power set.</param>
+      <param name="accDist">Accel distance set.</param>
+      <param name="DecDist">Decel distance set.</param>
+      <param name="totalDist">Total distance set.</param>
+    </member>
+	
+	<member name="M:AccOneEnc">
+      <summary>
+        Acceleration Controller Function. (One Encoder)
+		*Before use, please use AccOneEnc_Config(..) first.
+      </summary>
+      <param name="enc">Encoder Input.</param>
+      <param name="pOut">Power Output.</param>
+      <param name="isDoneOut">It will return 1 if encoder reach the Total distance set, if not will return 0.</param>
+    </member>
+	
+	<member name="M:AccTwoEnc">
+      <summary>
+        Acceleration Controller Function. (Two Encoder)
+		*Before use, please use AccTwoEnc_Config(..) first.
+      </summary>
+      <param name="enc1">Encoder 1 Input.</param>
+      <param name="enc2">Encoder 2 Input.</param>
+      <param name="pOut">Power Output.</param>
+      <param name="isDoneOut">It will return 1 if encoder reach the Total distance set, if not will return 0.</param>
+    </member>
+	
+  </members>
+</doc>

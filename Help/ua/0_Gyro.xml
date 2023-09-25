@@ -4,7 +4,7 @@
     <member name="T:Gyro">
       <summary>
 		Before use this module, Please import first:
-		import "Sensors\Gyro"
+		import "Mods\Gyro"
         The EV3 Adv Gyro Sensor module made by OFDL Taiwan.
       </summary>
     </member>
@@ -61,9 +61,17 @@
       <param name="port">The port (1~4) you connect to device.</param>
     </member>
 	
+	<member name="M:resetHard">
+      <summary>
+        Reset the Gyro sensor to zero degrees. (Need 500ms)
+		(Hard Reset with GYRO-CAL mode, still need test.)
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+    </member>
+	
 	<member name="M:resetCheck">
       <summary>
-        Checking the gyro reset result, will take 0.7s to check, if gyro is drift will beep sound to notice user.
+        Checking the gyro reset result, will take 0.6s to check, if gyro is drift will beep sound to notice user.
       </summary>
       <param name="port">The port (1~4) you connect to device.</param>
       <param name="resultOut">The result in string "true" of "false"</param>

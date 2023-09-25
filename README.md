@@ -29,8 +29,10 @@ Please refer to the Help panel in the CLEV3R IDE.
 10. HiTechnic Compass Sensor
 11. Pixy2 Camera
 
-## Movement module (TBD)
-1. In progress, Converting Adv motor controller to BASIC :-D
+## Movement module (Algorithm part)
+1. PD Controller
+2. Sync Controller
+3. ACC Controller
 
 ## Tools module (Useful ToolBox Block BASIC version)
 1. getArrayMaxMin()

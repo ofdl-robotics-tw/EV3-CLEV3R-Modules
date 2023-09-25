@@ -4,7 +4,7 @@
     <member name="T:Color">
       <summary>
 		Before use this module, Please import first:
-		import "Sensors\Color"
+		import "Mods\Color"
         The EV3 Color Sensor module made by OFDL Taiwan.
       </summary>
     </member>

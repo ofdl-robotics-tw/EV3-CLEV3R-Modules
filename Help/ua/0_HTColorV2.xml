@@ -4,7 +4,7 @@
     <member name="T:HTColorV2">
       <summary>
 		Before use this module, Please import first:
-		import "Sensors\HTColorV2"
+		import "Mods\HTColorV2"
         The HiTechnic Color Sensor V2 module made by OFDL Taiwan.
       </summary>
     </member>

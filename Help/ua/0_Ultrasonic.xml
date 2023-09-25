@@ -4,7 +4,7 @@
     <member name="T:Ultrasonic">
       <summary>
 		Before use this module, Please import first:
-		import "Sensors\Ultrasonic"
+		import "Mods\Ultrasonic"
         The EV3/NXT UltraSonic Sensor module made by OFDL Taiwan.
       </summary>
     </member>

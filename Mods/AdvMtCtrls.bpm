@@ -1,0 +1,226 @@
+'Name: OFDL Advanced Motor Controller Block module (algorithm part)
+'Version: 1.0
+'Author: OFDL Anthony 2023/09/09
+'---------------------------------
+
+number err_old
+number kp
+number kd
+number pwr
+
+number sync_kp
+number sync_vB
+number sync_vC
+number sync_vBsign
+number sync_vCsign
+
+number ACC1_minPwr
+number ACC1_maxPwr
+number ACC1_accelDist
+number ACC1_DecelDist
+number ACC1_totalDist
+number ACC1_isNEG
+
+number ACC2_minPwr
+number ACC2_maxPwr
+number ACC2_accelDist
+number ACC2_DecelDist
+number ACC2_totalDist
+number ACC2_isNEG
+
+Function PD_Config(in number kp_in, in number kd_in, in number pwr_in)
+  kp = kp_in
+  kd = kd_in
+  pwr = pwr_in
+  err_old = 0
+EndFunction
+
+Function PD(in number e1, in number e2, out number pB, out number pC)
+  err = e1 - e2
+  U = err * kp + (err - err_old) * kd
+  '---------Start of Power regulation---------
+  'If pB > 100 Then
+  'pC =  pC - (pB -100)
+  'EndIf
+  
+  'If pC > 100 Then
+  'pB =  pB - (pC -100)
+  'EndIf
+  
+  'If pB < -100 Then
+  'pC = pC - (pB + 100)
+  'EndIf
+  
+  'If pC < -100 Then
+  'pB = pB - (pC + 100)
+  'EndIf
+  
+  'If pB < -100 Then
+  'pB = -100
+  'ElseIf pB > 100 Then
+  'pB = 100
+  'EndIf
+  
+  'If pC < -100 Then
+  'pC = -100
+  'ElseIf pb > 100 Then
+  'pC = 100
+  'EndIf
+  '---------End of Power regulation-----------
+  pB = pwr + U
+  pC = pwr - U
+  err_old = err
+EndFunction
+
+Function PD_pwrIn(in number pwrIn, in number e1, in number e2, out number pB, out number pC)
+  err = e1 - e2
+  U = err * kp + (err - err_old) * kd
+  '---------Start of Power regulation---------
+  'If pB > 100 Then
+  'pC =  pC - (pB -100)
+  'EndIf
+  
+  'If pC > 100 Then
+  'pB =  pB - (pC -100)
+  'EndIf
+  
+  'If pB < -100 Then
+  'pC = pC - (pB + 100)
+  'EndIf
+  
+  'If pC < -100 Then
+  'pB = pB - (pC + 100)
+  'EndIf
+  
+  'If pB < -100 Then
+  'pB = -100
+  'ElseIf pB > 100 Then
+  'pB = 100
+  'EndIf
+  
+  'If pC < -100 Then
+  'pC = -100
+  'ElseIf pb > 100 Then
+  'pC = 100
+  'EndIf
+  '---------End of Power regulation-----------
+  pB = pwr + U
+  pC = pwr - U
+  err_old = err
+EndFunction
+
+Function Sync_Config(in number kp_in, in number vB_in, in number vC_in)
+  sync_kp = kp_in
+  sync_vB = vB_in
+  sync_vC = vC_in
+  sync_vBsign = Math.Abs(vB_in + 1) - Math.Abs(vB_in)
+  sync_vCsign = Math.Abs(vC_in + 1) - Math.Abs(vC_in)
+EndFunction
+
+Function Sync(in number eB, in number eC, out number pB, out number pC)
+  U = ((sync_vC * eB) - (sync_vB * eC)) * sync_kp
+  pB = sync_vB - sync_vCsign * U
+  pC = sync_vC + sync_vBsign * U
+EndFunction
+
+Function Sync_pwrIn(in number eB, in number eC, in number S_KP, in number vB, in number vC,  out number pB, out number pC)
+  U = ((vC * eB) - (vB * eC)) * S_KP
+  pB = vB - (Math.Abs(vC + 1) - Math.Abs(vC)) * U
+  pC = vC + (Math.Abs(vB + 1) - Math.Abs(vB)) * U
+EndFunction
+
+Function AccOneEnc_Config(in number minPwr_in, in number maxPwr_in, in number accelDist_in, in number DecelDist_in, in number totalDist_in)
+  ACC1_minPwr = Math.Abs(minPwr_in)
+  ACC1_maxPwr = Math.Abs(maxPwr_in)
+  ACC1_accelDist = accelDist_in
+  ACC1_DecelDist = DecelDist_in
+  ACC1_totalDist = totalDist_in
+  
+  If minPwr_in < 0 Then
+    ACC1_isNEG = 1
+  Else
+    ACC1_isNEG = 0
+  EndIf
+EndFunction
+
+Function AccTwoEnc_Config(in number minPwr_in, in number maxPwr_in, in number accelDist_in, in number DecelDist_in, in number totalDist_in)
+  ACC2_minPwr = Math.Abs(minPwr_in)
+  ACC2_maxPwr = Math.Abs(maxPwr_in)
+  ACC2_accelDist = accelDist_in
+  ACC2_DecelDist = DecelDist_in
+  ACC2_totalDist = totalDist_in
+  
+  If minPwr_in < 0 Then
+    ACC2_isNEG = 1
+  Else
+    ACC2_isNEG = 0
+  EndIf
+EndFunction
+
+Function AccOneEnc(in number e1, out number pwrOut, out number done)
+  currEnc = Math.Abs(e1)
+  
+  If currEnc >= ACC1_totalDist Then
+    done = 1
+  ElseIf currEnc > ACC1_totalDist / 2 Then
+    If ACC1_DecelDist = 0 Then
+      pwr = ACC1_maxPwr
+    Else
+      pwr = (ACC1_maxPwr - ACC1_minPwr) / Math.Power(ACC1_DecelDist, 2) * Math.Power(currEnc - ACC1_totalDist, 2) + ACC1_minPwr
+    EndIf
+    done = 0
+  Else
+    If ACC1_accelDist = 0 Then
+      pwr = ACC1_maxPwr
+    Else
+      pwr = (ACC1_maxPwr - ACC1_minPwr) / Math.Power(ACC1_accelDist, 2) * Math.Power(currEnc - 0, 2) + ACC1_minPwr
+    EndIf
+    done = 0
+  EndIf
+
+  If pwr < ACC1_minPwr Then
+    pwr = ACC1_minPwr
+  ElseIf pwr > ACC1_maxPwr Then
+    pwr = ACC1_maxPwr
+  EndIf
+  
+  If ACC1_isNEG = 1 Then
+    pwrOut = 0 - pwr
+  Else
+    pwrOut = pwr
+  EndIf
+EndFunction
+
+Function AccTwoEnc(in number e1, in number e2, out number pwrOut, out number done)
+  currEnc = (Math.Abs(e1) + Math.Abs(e2)) / 2
+  
+  If currEnc >= ACC2_totalDist Then
+    done = 1
+  ElseIf currEnc > ACC2_totalDist / 2 Then
+    If ACC2_DecelDist = 0 Then
+      pwr = ACC2_maxPwr
+    Else
+      pwr = (ACC2_maxPwr - ACC2_minPwr) / Math.Power(ACC2_DecelDist, 2) * Math.Power(currEnc - ACC2_totalDist, 2) + ACC2_minPwr
+    EndIf
+    done = 0
+  Else
+    If ACC2_accelDist = 0 Then
+      pwr = ACC2_maxPwr
+    Else
+      pwr = (ACC2_maxPwr - ACC2_minPwr) / Math.Power(ACC2_accelDist, 2) * Math.Power(currEnc - 0, 2) + ACC2_minPwr
+    EndIf
+    done = 0
+  EndIf
+  
+  If pwr < ACC2_minPwr Then
+    pwr = ACC2_minPwr
+  ElseIf pwr > ACC2_maxPwr Then
+    pwr = ACC2_maxPwr
+  EndIf
+  
+  If ACC2_isNEG = 1 Then
+    pwrOut = 0 - pwr
+  Else
+    pwrOut = pwr
+  EndIf
+EndFunction

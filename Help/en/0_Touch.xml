@@ -4,7 +4,7 @@
     <member name="T:Touch">
       <summary>
 		Before use this module, Please import first:
-		import "Sensors\Touch"
+		import "Mods\Touch"
         The EV3/NXT Touch Sensor module made by OFDL Taiwan.
       </summary>
     </member>
@@ -15,6 +15,14 @@
       </summary>
       <param name="port">The port (1~4) you connect to device.</param>
       <param name="stateOut">Touch state output, 1 = pressed, 0 = released</param>
+    </member>
+	
+	<member name="M:getCount">
+      <summary>
+        Gets the number of times the touch sensor has been pressed since the program was run.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="countOut">Number of times the touch sensor has been pressed.</param>
     </member>
 	
 	<member name="M:waitTouched">

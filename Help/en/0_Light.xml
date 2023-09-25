@@ -4,7 +4,7 @@
     <member name="T:Light">
       <summary>
 		Before use this module, Please import first:
-		import "Sensors\Light"
+		import "Mods\Light"
         The EV3 Color (Normalization Light) module made by OFDL Taiwan.
       </summary>
     </member>

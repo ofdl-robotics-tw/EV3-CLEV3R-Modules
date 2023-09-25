@@ -55,10 +55,19 @@ Function reset(in number port)
   Sensor.Wait(port)
 EndFunction
 
+Function resetHard(in number port)
+  'put the gyro into CAL mode.
+  Sensor.SetMode(port, 4)
+  'wait it apply
+  Program.Delay(550)
+  'put the gyro into angle mode.
+  Sensor.SetMode(port, 0)
+EndFunction
+
 Function resetCheck(in number port, out string result)
   Sensor.SetMode(port, 0)
   Sensor.ReadRawValue(port, 0)
-  Program.Delay(700)
+  Program.Delay(600)
   If Sensor.ReadRawValue(port, 0) <> 0 Then
     result = "False"
     Speaker.Note(100, "C5", 100)
