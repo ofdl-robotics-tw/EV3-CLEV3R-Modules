@@ -1,6 +1,6 @@
 'Name: OFDL Advanced Motor Controller Block module (algorithm part)
-'Version: 1.0
-'Author: OFDL Anthony 2023/09/09
+'Version: 1.1
+'Author: OFDL Anthony 2023/09/27
 '---------------------------------
 
 number err_old
@@ -104,8 +104,8 @@ Function PD_pwrIn(in number pwrIn, in number e1, in number e2, out number pB, ou
   'pC = 100
   'EndIf
   '---------End of Power regulation-----------
-  pB = pwr + U
-  pC = pwr - U
+  pB = pwrIn + U
+  pC = pwrIn - U
   err_old = err
 EndFunction
 
