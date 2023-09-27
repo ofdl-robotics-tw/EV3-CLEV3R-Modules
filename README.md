@@ -29,6 +29,12 @@ Please refer to the Help panel in the CLEV3R IDE.
 9. HiTechnic IRSeeker V2
 10. HiTechnic Compass Sensor
 11. Pixy2 Camera
+12. SPIKE/RI Color Sensor (TBD)
+13. SPIKE/RI Force Sensor (TBD)
+14. SPIKE/RI Ultrasonic Sensor (TBD)
+15. HuskyLens Camera (TBD)
+16. OpenMV Camera (TBD)
+17. MindSensors series Sensor (TBD)
 
 ## Movement module (Algorithm part)
 1. PD Controller
