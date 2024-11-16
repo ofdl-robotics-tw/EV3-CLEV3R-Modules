@@ -1,6 +1,6 @@
 'Name: Pixy2 module
-'Version: 1.0
-'Author: OFDL Anthony 2023/08/29
+'Version: 1.1
+'Author: OFDL Anthony 2024/11/16
 '---------------------------------
 '
 ' Please make sure pixy2 is in "LEGO I2C" mode.
@@ -24,6 +24,18 @@ Function getSignature(in number port, in number sig, out number x, out number y,
   y = values[2]
   w = values[3]
   h = values[4]
+EndFunction
+
+Function getRGB(in number port, in number xIn, in number yIn, in number isSaturated, out number r, out number g, out number b)
+  'TESSLAB Darren test Pass
+  writeBuffer[0] = 94
+  writeBuffer[1] = Math.Remainder((xIn * 0.80952380952) + 128, 256) - 128
+  writeBuffer[2] = Math.Remainder((yIn * 1.23188405797) + 128, 256) - 128
+  writeBuffer[3] = isSaturated
+  values = Sensor.CommunicateI2C(port, 1, 4, 3, writeBuffer)
+  r = values[0]
+  g = values[1]
+  b = values[2]
 EndFunction
 
 Function setLampOn(in number port)

@@ -32,6 +32,19 @@
       <param name="hOut">The Height (0-255) output.</param>
     </member>
 	
+	<member name="M:getRGB">
+      <summary>
+        Gets specific RGB info from Pixy2.
+      </summary>
+      <param name="port">The port (1~4) you connect to device.</param>
+      <param name="xIn">X Image Location.</param>
+      <param name="yIn">Y Image Location.</param>
+	  <param name="isSaturated">Saturated, 0 is false, 1 is true.</param>
+      <param name="rOut">The Red Value output.</param>
+      <param name="gOut">The Green Value output.</param>
+      <param name="bOut">The Blue Value output.</param>
+    </member>
+	
 	<member name="M:setLampOn">
       <summary>
         Set Pixy2 Lamp On.

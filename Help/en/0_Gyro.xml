@@ -63,6 +63,7 @@
 	
 	<member name="M:resetHard">
       <summary>
+		This method marked as deprecated!
         Reset the Gyro sensor to zero degrees. (Need 500ms)
 		(Hard Reset with GYRO-CAL mode, still need test.)
       </summary>

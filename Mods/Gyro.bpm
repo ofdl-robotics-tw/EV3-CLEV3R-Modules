@@ -1,6 +1,6 @@
 'Name: EV3 Adv Gyro module
-'Version: 1.0
-'Author: OFDL Anthony 2023/08/29
+'Version: 1.1
+'Author: OFDL Anthony 2024/11/16
 '---------------------------------
 
 Function getAngle(in number port, out number value)
@@ -26,15 +26,10 @@ Function getTiltRate(in number port, out number value)
 EndFunction
 
 Function getHeading(in number port, in number rpx_bias, out number rpx, out number rpx_360)
-  'bias
-  If rpx_bias <= 180 Then
-    bias = 0 - rpx_bias
-  Else
-    bias = 360 - rpx_bias
-  EndIf
-  
+  'By OFDL HYT
+  'https://www.geogebra.org/calculator/kd4pn2j6
   'rpx 0 ~ 360
-  rpx_360= bias + Math.Remainder(Math.Remainder(Sensor.ReadRawValue(port, 0), 360) + 360, 360)
+  rpx_360= Math.Remainder(Math.Remainder(Sensor.ReadRawValue(port, 0) - rpx_bias , 360) + 360, 360)
   
   'rpx -180 ~ 180
   If rpx_360 <= 180 Then
@@ -56,12 +51,19 @@ Function reset(in number port)
 EndFunction
 
 Function resetHard(in number port)
+  ''As test result, This reset method may broke sensors factory setting. So disabled.
+  LCD.Clear()
+  LCD.Text(1, 0, 10, 1, "resetHard() is deprecated")
+  Speaker.Note(100, "C5", 100)
+  Speaker.Wait()
+  LCD.Update()
+  
   'put the gyro into CAL mode.
-  Sensor.SetMode(port, 4)
+  ''Sensor.SetMode(port, 4)
   'wait it apply
-  Program.Delay(550)
+  ''Program.Delay(550)
   'put the gyro into angle mode.
-  Sensor.SetMode(port, 0)
+  ''Sensor.SetMode(port, 0)
 EndFunction
 
 Function resetCheck(in number port, out string result)
